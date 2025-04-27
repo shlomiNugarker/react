@@ -7,7 +7,7 @@
  * @noflow
  * @nolint
  * @preventMunge
- * @generated SignedSource<<8a180acb9a04b50800b4e10c8356b675>>
+ * @generated SignedSource<<5567d5cb553916fb255a8f9d1a20a4dc>>
  */
 
 "use strict";
@@ -89,7 +89,7 @@ pureComponentPrototype.constructor = PureComponent;
 assign(pureComponentPrototype, Component.prototype);
 pureComponentPrototype.isPureReactComponent = !0;
 var isArrayImpl = Array.isArray,
-  ReactSharedInternals = { H: null, A: null, T: null, S: null, V: null },
+  ReactSharedInternals = { H: null, A: null, T: null, S: null },
   hasOwnProperty = Object.prototype.hasOwnProperty;
 function ReactElement(type, key, self, source, owner, props) {
   self = props.ref;
@@ -510,7 +510,10 @@ exports.startTransition = function (scope) {
   } catch (error) {
     reportGlobalError(error);
   } finally {
-    ReactSharedInternals.T = prevTransition;
+    null !== prevTransition &&
+      null !== currentTransition.types &&
+      (prevTransition.types = currentTransition.types),
+      (ReactSharedInternals.T = prevTransition);
   }
 };
 exports.unstable_Activity = REACT_ACTIVITY_TYPE;
@@ -519,13 +522,7 @@ exports.unstable_Scope = REACT_SCOPE_TYPE;
 exports.unstable_SuspenseList = REACT_SUSPENSE_LIST_TYPE;
 exports.unstable_TracingMarker = REACT_TRACING_MARKER_TYPE;
 exports.unstable_ViewTransition = REACT_VIEW_TRANSITION_TYPE;
-exports.unstable_addTransitionType = function (type) {
-  var pendingTransitionTypes = ReactSharedInternals.V;
-  null === pendingTransitionTypes
-    ? (ReactSharedInternals.V = [type])
-    : -1 === pendingTransitionTypes.indexOf(type) &&
-      pendingTransitionTypes.push(type);
-};
+exports.unstable_addTransitionType = function () {};
 exports.unstable_getCacheForType = function (resourceType) {
   var dispatcher = ReactSharedInternals.A;
   return dispatcher ? dispatcher.getCacheForType(resourceType) : resourceType();
@@ -594,7 +591,7 @@ exports.useSyncExternalStore = function (
 exports.useTransition = function () {
   return ReactSharedInternals.H.useTransition();
 };
-exports.version = "19.1.0-native-fb-313332d1-20250326";
+exports.version = "19.2.0-native-fb-c498bfce-20250426";
 "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ &&
   "function" ===
     typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop &&
